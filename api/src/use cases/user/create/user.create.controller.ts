@@ -1,4 +1,4 @@
-import { verifyIfIsAnInternalException, error } from '../../../utils/exception';
+import { verifyIfIsAnInternalException } from '../../../utils/exception';
 import UserCreateUseCase from './user.create.use.case';
 import express from 'express';
 
@@ -16,7 +16,7 @@ route.post('/', async (req, res) => {
     res.status(201).send();
   }
   catch(err) {
-    const error:error = verifyIfIsAnInternalException(err);
+    const error = verifyIfIsAnInternalException(err);
     res.status(error.status).json(error.message);
   }
 });

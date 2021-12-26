@@ -11,7 +11,7 @@ export default function exception(message:string, status=400) {
   return response;
 }
 
-export function verifyIfIsAnInternalException(err:any) {
+export function verifyIfIsAnInternalException(err:any):error {
   if(!err.status)  {
     console.log(err)
     return exception('Houve um erro interno...', 500); 

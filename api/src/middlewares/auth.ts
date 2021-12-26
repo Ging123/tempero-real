@@ -6,7 +6,7 @@ import Token from "../utils/token";
 const user = new UserRepository();
 const token = new Token();
 
-async function authUser(req:any, res:Response, next:() => void) {
+export async function authUser(req:any, res:Response, next:() => void) {
   try {
     const sentToken = req.headers["authorization"]!;
     token.validate(sentToken);
@@ -26,5 +26,3 @@ async function searchUserByToken(tokenSent:string) {
   if(!userFound) throw exception(userIsNotLogged, 401);
   return userFound;
 }
-
-module.exports = { authUser };

@@ -24,6 +24,11 @@ class UserRepository extends UserModel {
     return token;
   }
 
+  public async logout(user:any) {
+    user.token = '';
+    await user.save();
+  }
+
   public async deleteOneByEmail(email:string) {
     return await this.userModel.deleteOne({email:email});
   }

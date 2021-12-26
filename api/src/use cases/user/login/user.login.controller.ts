@@ -1,5 +1,5 @@
 import express from 'express';
-import { verifyIfIsAnInternalException, error } from '../../../utils/exception';
+import { verifyIfIsAnInternalException } from '../../../utils/exception';
 import LoginUseCase from './user.login.use.case';
 
 const route = express.Router();
@@ -12,7 +12,7 @@ route.post('/login', async (req, res) => {
     res.status(201).send();
   }
   catch(err:any) {
-    const error:error = verifyIfIsAnInternalException(err);
+    const error = verifyIfIsAnInternalException(err);
     res.status(error.status).json(error.message);
   }
 });
