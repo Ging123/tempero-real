@@ -34,6 +34,10 @@ class UserModel {
       type:String,
       index:true,
       required:true
+    },
+    token: {
+      type:String,
+      index:true
     }
   });
 
@@ -44,7 +48,8 @@ class UserModel {
       email:user.email,
       username:user.username,
       password:user.password,
-      role:"user"
+      role:"user",
+      token:''
     });
   }
 }
