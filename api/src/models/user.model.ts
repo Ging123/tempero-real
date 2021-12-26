@@ -38,6 +38,9 @@ class UserModel {
     token: {
       type:String,
       index:true
+    },
+    cart: {
+      type:Array
     }
   });
 
@@ -49,7 +52,8 @@ class UserModel {
       username:user.username,
       password:user.password,
       role:"user",
-      token:''
+      token:'',
+      cart:[]
     });
   }
 }
