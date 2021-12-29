@@ -21,7 +21,9 @@ export async function authUser(req:any, res:Response, next:() => void) {
 
 async function searchUserByToken(tokenSent:string) {
   const userIsNotLogged = 'Você não está logado';
+  const userIsNotConfirmed = 'Você não está confirmado';
   const userFound = await user.findByToken(tokenSent);
   if(!userFound) throw exception(userIsNotLogged, 401);
+  if(userFound.notConfirmed) throw exception(userIsNotConfirmed, 401);
   return userFound;
 }

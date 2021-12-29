@@ -8,8 +8,15 @@ class SecretRepository extends SecretModel {
     return secret;
   }
 
-  public async deleteByEmail(email:string) {
+  public async deleteOneByEmail(email:string) {
     await this.secretModel.deleteOne({userEmail:email});
+  }
+
+  public async findOneByEmailAndSecretCode(email:string, code:string) {
+    return await this.secretModel.findOne({
+      userEmail:email,
+      secret:code
+    });
   }
 }
 

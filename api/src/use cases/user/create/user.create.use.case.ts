@@ -2,6 +2,7 @@ import UserRepository from "../../../repositories/user.repository";
 import * as EmailValidator from 'email-validator';
 import exception from '../../../utils/exception';
 import EmailSender from "../../../external/emailSender";
+import SecretCreateUseCase from '../../secret/create/secret.create.use.case';
 
 interface user {
   email:string;
@@ -13,6 +14,7 @@ class UserCreateUseCase {
 
   private readonly user = new UserRepository();
   private readonly emailSender = new EmailSender();
+  private readonly secret = new SecretCreateUseCase();
 
   public async create(user:user) {
     this.validateEmail(user.email);
@@ -23,7 +25,7 @@ class UserCreateUseCase {
     await this.verifyIfUsernameAlredyExists(user.username);
     const userSaved = await this.user.insert(user);
     if(process.env.MODE! === 'DEV') return this.user.confirmAccount(userSaved);
-    this.sendCodeToVerifyEmail(user.email);
+    await this.sendCodeToVerifyEmail(user.email);
   }
 
   private validateEmail(email:string) {
@@ -92,15 +94,21 @@ class UserCreateUseCase {
     if(user) throw exception(usernameAlredyExists);
   }
 
-  private sendCodeToVerifyEmail(email:string) {
+  private async sendCodeToVerifyEmail(email:string) {
+    const code = await this.secret.create(email);
+    const link = this.createLinkToConfirmEmail(email, code.secret);
     this.emailSender.send({
       to:email,
       subject:'Confirmar email',
       text:`
         <h1>Confirme seu email</h1>
-        <p>Clique <a>aqui</a> para confirmar seu email</p>
+        <p>Clique <a href=${link}>aqui</a> para confirmar seu email</p>
       `
     });
+  }
+
+  private createLinkToConfirmEmail(email:string, code:string) {
+    return `${process.env.API_URL!}user/confirmEmail?email=${email}&code=${code}`;
   }
 }
 

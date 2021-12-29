@@ -16,6 +16,6 @@ test('Test: create an secret code', async () => {
 }, 20000);
 
 afterAll(async () => {
-  await repository.deleteByEmail(email);
+  await repository.deleteOneByEmail(email);
   await mongose.disconnect();
 }, 20000);
