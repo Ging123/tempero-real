@@ -1,6 +1,7 @@
 import UserRepository from "../../../repositories/user.repository";
 import * as EmailValidator from 'email-validator';
 import exception from '../../../utils/exception';
+import EmailSender from "../../../external/emailSender";
 
 interface user {
   email:string;
@@ -11,19 +12,39 @@ interface user {
 class UserCreateUseCase {
 
   private readonly user = new UserRepository();
+  private readonly emailSender = new EmailSender();
 
   public async create(user:user) {
     this.validateEmail(user.email);
+    this.validateProvider(user.email);
     this.validateUsername(user.username);
     this.validatePassword(user.password);
     await this.verifyIfEmailAlredyExists(user.email);
     await this.verifyIfUsernameAlredyExists(user.username);
-    await this.user.insert(user);
+    const userSaved = await this.user.insert(user);
+    if(process.env.MODE! === 'DEV') return this.user.confirmAccount(userSaved);
+    this.sendCodeToVerifyEmail(user.email);
   }
 
   private validateEmail(email:string) {
     this.validateEmailSyntax(email);
     this.validateEmailLength(email);
+  }
+
+  private validateProvider(email:string) {
+    const emailProviderInvalid = 'Provedor do email inválido só aceitamos emails outlook, hotmail ou gmail';
+    const validProviders = ['outlook', 'hotmail', 'gmail'];
+    const emailProvider = this.getEmailProvider(email);
+    for(const provider of validProviders) {
+      if(emailProvider === provider) return;
+    }
+    throw exception(emailProviderInvalid);
+  }
+
+  private getEmailProvider(email:string) {
+    let provider = email.split('@')[1];
+    provider = provider.replace('.com', '');
+    return provider;
   }
 
   private validateEmailSyntax(email:string) {
@@ -69,6 +90,17 @@ class UserCreateUseCase {
     const usernameAlredyExists = 'Esse nome de usuário já está sendo utilizado';
     const user = await this.user.findOneByUsername(username);
     if(user) throw exception(usernameAlredyExists);
+  }
+
+  private sendCodeToVerifyEmail(email:string) {
+    this.emailSender.send({
+      to:email,
+      subject:'Confirmar email',
+      text:`
+        <h1>Confirme seu email</h1>
+        <p>Clique <a>aqui</a> para confirmar seu email</p>
+      `
+    });
   }
 }
 

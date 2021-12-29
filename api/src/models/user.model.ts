@@ -41,6 +41,9 @@ class UserModel {
     },
     cart: {
       type:Array
+    },
+    notConfirmed: {
+      type:Boolean
     }
   });
 
@@ -53,7 +56,8 @@ class UserModel {
       password:user.password,
       role:"user",
       token:'',
-      cart:[]
+      cart:[],
+      notConfirmed:true
     });
   }
 }

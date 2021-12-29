@@ -4,12 +4,11 @@ import { Response } from "express";
 import Token from "../utils/token";
 
 const user = new UserRepository();
-const token = new Token();
 
 export async function authUser(req:any, res:Response, next:() => void) {
   try {
     const sentToken = req.headers["authorization"]!;
-    token.validate(sentToken);
+    Token.validate(sentToken);
     const userFound = await searchUserByToken(sentToken);
     req.user = userFound;
     next();

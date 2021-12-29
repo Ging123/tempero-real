@@ -10,6 +10,7 @@ class UserRepository extends UserModel {
     const user = this.createNewUser(userData);
     await this.encryptPassword(user);
     await user.save();
+    return user;
   }
 
   private async encryptPassword(user:any) {
@@ -26,6 +27,11 @@ class UserRepository extends UserModel {
 
   public async logout(user:any) {
     user.token = '';
+    await user.save();
+  }
+
+  public async confirmAccount(user:any) {
+    user.notConfirmed = undefined;
     await user.save();
   }
 

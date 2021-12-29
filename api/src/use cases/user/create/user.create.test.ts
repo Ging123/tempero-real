@@ -9,7 +9,7 @@ const username = 'UserCreateUseCase';
 
 beforeAll(async () => {
   await mongose.connect(process.env.DB_URL_TEST!);
-});
+}, 20000);
 
 test('Test: Create an account with an invalid email', async () => {
   try {
@@ -50,6 +50,20 @@ test('Test: Create an account with email length too big', async () => {
   catch(err:any) {
     const emailLengthTooBig = 'Email inválido';
     expect(err.message).toBe(emailLengthTooBig);
+  }
+});
+
+test('Test: Create an account with an invalid email provider', async () => {
+  try {
+    await user.create({
+      email:'UserCreateUseCase@hootmail.com',
+      username:'UserCreateUseCase',
+      password:'123456789'
+    });
+  }
+  catch(err:any) {
+    const emailProviderInvalid = 'Provedor do email inválido só aceitamos emails outlook, hotmail ou gmail';
+    expect(err.message).toBe(emailProviderInvalid);
   }
 });
 
@@ -142,8 +156,9 @@ test('Test: Create an user', async () => {
     email:email,
     username:username,
     password:'123456789'
-  });
-});
+  })
+  .then(() => expect(true).toBe(true));
+}, 20000);
 
 test('Test: Create an account with email that alredy exists', async () => {
   try {
@@ -157,7 +172,7 @@ test('Test: Create an account with email that alredy exists', async () => {
     const emailAlredyExists = 'Esse email já está sendo utilizado';
     expect(err.message).toBe(emailAlredyExists);
   }
-});
+}, 10000);
 
 test('Test: Create an account with username that alredy exists', async () => {
   try {
@@ -171,9 +186,9 @@ test('Test: Create an account with username that alredy exists', async () => {
     const usernameAlredyExists = 'Esse nome de usuário já está sendo utilizado';
     expect(err.message).toBe(usernameAlredyExists);
   }
-});
+}, 10000);
 
 afterAll(async () => {
   await repository.deleteOneByEmail(email);
   await mongose.disconnect();
-});
+}, 20000);

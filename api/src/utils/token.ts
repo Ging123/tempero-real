@@ -15,11 +15,12 @@ class Token {
       email:user.email,
       username:user.username
     }
-    const token = jwt.sign(userData, process.env.SECRET_KEY_OF_TOKEN!, {expiresIn:this.accessTokenTime});
+    const token = jwt.sign(userData, process.env.SECRET_KEY_OF_TOKEN!, 
+      {expiresIn:this.accessTokenTime});
     return token;
   }
 
-  public validate(token:string) {
+  static validate(token:string) {
     const emptyToken = 'Token de acesso não foi enviado';
     const tokenExpired = 'Token de accesso expirou';
     if(!token) throw exception(emptyToken);
