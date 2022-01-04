@@ -8,7 +8,7 @@ const email = 'UserLogoutUseCase@hotmail.com';
 
 beforeAll(async () => {
   await mongose.connect(process.env.DB_URL_TEST!);
-}, 20000);
+});
 
 test('Test: Logout an user', async () => {
   await repository.insert({
@@ -20,9 +20,9 @@ test('Test: Logout an user', async () => {
   await repository.login(userToTest);
   await user.logout(userToTest)
   .then(() => expect(true).toBe(true));
-}, 20000);
+});
 
 afterAll(async () => {
   await repository.deleteOneByEmail(email);
   await mongose.disconnect();
-}, 20000);
+});

@@ -8,14 +8,14 @@ const email = 'SecretCreateUseCase@outlook.com';
 
 beforeAll(async () => {
   await mongose.connect(process.env.DB_URL_TEST!);
-}, 20000);
+});
 
 test('Test: create an secret code', async () => {
   await secret.create(email).
   then((secretCode) => expect(secretCode).toBeDefined())
-}, 20000);
+});
 
 afterAll(async () => {
   await repository.deleteOneByEmail(email);
   await mongose.disconnect();
-}, 20000);
+});

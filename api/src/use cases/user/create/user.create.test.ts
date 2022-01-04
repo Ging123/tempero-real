@@ -8,8 +8,10 @@ const email = 'UserCreateUseCase@outlook.com';
 const username = 'UserCreateUseCase';
 
 beforeAll(async () => {
+  console.log("aaaa")
+  console.log(process.env.DB_URL_TEST!)
   await mongose.connect(process.env.DB_URL_TEST!);
-}, 20000);
+});
 
 test('Test: Create an account with an invalid email', async () => {
   try {
@@ -158,7 +160,7 @@ test('Test: Create an user', async () => {
     password:'123456789'
   })
   .then(() => expect(true).toBe(true));
-}, 20000);
+});
 
 test('Test: Create an account with email that alredy exists', async () => {
   try {
@@ -191,4 +193,4 @@ test('Test: Create an account with username that alredy exists', async () => {
 afterAll(async () => {
   await repository.deleteOneByEmail(email);
   await mongose.disconnect();
-}, 20000);
+});

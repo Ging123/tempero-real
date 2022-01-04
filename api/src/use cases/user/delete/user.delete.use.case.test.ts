@@ -8,7 +8,7 @@ const email = 'UserDeleteUseCase@hotmail.com';
 
 beforeAll(async () => {
   await mongose.connect(process.env.DB_URL_TEST!);
-}, 20000);
+});
 
 test('Test: delete an user', async () => {
   await repository.insert({
@@ -18,9 +18,8 @@ test('Test: delete an user', async () => {
   });
   await user.delete(email)
   .then(() => expect(true).toBe(true));
-  
-}, 20000);
+});
 
 afterAll(async () => {
   await mongose.disconnect();
-}, 20000);
+});

@@ -14,3 +14,8 @@ down:
 
 logs:
 	docker-compose logs -f
+
+.PHONY: test
+
+test:
+	docker exec -it api npm run test

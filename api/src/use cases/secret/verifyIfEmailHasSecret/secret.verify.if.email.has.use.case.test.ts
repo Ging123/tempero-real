@@ -8,12 +8,12 @@ const email = 'SecretVerifyIfEmailHasUseCase@outlook.com';
 
 beforeAll(async () => {
   await mongose.connect(process.env.DB_URL_TEST!);
-}, 20000);
+});
 
 afterAll(async () => {
   await repository.deleteOneByEmail(email);
   await mongose.disconnect();
-}, 20000);
+});
 
 test('Test: verify if an email has a secret', async () => {
   const insertedSecret = await repository.insert(email);

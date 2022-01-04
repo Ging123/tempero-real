@@ -9,7 +9,7 @@ const username = 'UserRefreshTokenUseCase';
 
 beforeAll(async () => {
   await mongose.connect(process.env.DB_URL_TEST!);
-}, 20000);
+});
 
 test('Test: Refresh user token', async () => {
   await repository.insert({
@@ -19,9 +19,9 @@ test('Test: Refresh user token', async () => {
   });
   const userToTest = await repository.findOneByEmail(email);
   await user.refreshToken(userToTest);
-}, 20000);
+});
 
 afterAll(async () => {
   await repository.deleteOneByEmail(email);
   await mongose.disconnect();
-}, 20000);
+});

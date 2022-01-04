@@ -3,13 +3,17 @@ services:
   db:
     image: mongo:4.4
     container_name: db
+    env_file: 
+      - docker.env
     restart: always
     ports: 
-      - ${DB_PORT}:27017
-    environment:
-      MONGO_INITDB_DATABASE: ${DB_NAME}
-      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASS}
+      - 27017:27017
+    #environment:
+      #MONGO_INITDB_DATABASE: ${DB_NAME}
+      #MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      #MONGO_INITDB_ROOT_PASSWORD: ${DB_PASS}
+    volumes:
+      - './seed.js:/docker-entrypoint-initdb.d/mongo-init.js:ro'
 
 
   api: 
@@ -17,18 +21,21 @@ services:
     container_name: api
     restart: always
     env_file: 
-      - .env
+      - docker.env
     depends_on:
       - db
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
     volumes:
       - .:/usr/src/app
+      - /usr/src/app/node_modules/
+      
     working_dir: /usr/src/app
-    command: npm run start
+    command: sh -c "npm install && DB_URL_TEST="mongodb://db:27017" && npm run start" 
+    links: 
+      - db
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "5"
-

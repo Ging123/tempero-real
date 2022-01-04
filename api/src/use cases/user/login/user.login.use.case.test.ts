@@ -9,7 +9,7 @@ const username = 'userLoginUseCase';
 
 beforeAll(async () => {
   await mongose.connect(process.env.DB_URL_TEST!);
-}, 20000);
+});
 
 test('Test: Login with an email or username that doesnt exists', async () => {
   try {
@@ -54,4 +54,4 @@ test('Test: Login with an account that is already logged', async () => {
 afterAll(async () => {
   await repository.deleteOneByEmail(email);
   await mongose.disconnect();
-}, 20000);
+});
