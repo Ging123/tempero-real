@@ -22,10 +22,12 @@ class AddProductInCartUseCase {
     const productNameEmpty = 'Campo de nome não foi preenchido';
     const productQuantityEmpty = 'Campo de quantidade não foi preenchido';
     const quantityOfProductInvalid = 'Quantidade de produtos deve ser no mínimo 1';
+    const quantityGreaterThanAllowed = 'Quantidade deve ser no máximo 1000 produtos';
     if(!product) throw exception(productEmpty);
     if(!product.name) throw exception(productNameEmpty);
     if(product.quantity === undefined) throw exception(productQuantityEmpty);
     if(product.quantity <= 0) throw exception(quantityOfProductInvalid);
+    if(product.quantity > 1000) throw exception(quantityGreaterThanAllowed);
   }
 
   private async verifyIfProductExits(product:product) {

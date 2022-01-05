@@ -6,6 +6,15 @@ class ProductRepository extends ProductModel {
     return await this.productModel.find({});
   }
 
+  public async findOneByName(name:string) {
+    return await this.productModel.findOne({name:name});
+  }
+
+  public async updateStock(product:any, newStock:number) {
+    product.stock = newStock;
+    await product.save();
+  }
+
   public async insertSpices() {
     const spice = ['Tempero vermelho', 'Tempero amarelo'];
     const price = [2.50, 2.50];

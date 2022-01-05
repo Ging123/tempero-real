@@ -19,6 +19,13 @@ export async function authUser(req:any, res:Response, next:() => void) {
   }
 }
 
+export function authAdmin(req:any, res:Response, next:() => void) {
+  const userIsNotAnAdimn = 'Você não é um administrador';
+  const userIsAdmin = req.user.role === 'admin';
+  if(userIsAdmin) return next();
+  res.send(403).json(userIsNotAnAdimn);
+}
+
 async function searchUserByToken(tokenSent:string) {
   const userIsNotLogged = 'Você não está logado';
   const userIsNotConfirmed = 'Você não está confirmado';

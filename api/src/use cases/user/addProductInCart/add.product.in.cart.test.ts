@@ -51,6 +51,19 @@ test('Test: Send quantity shorter than 1', async () => {
   }
 });
 
+test('Test: Send quantity greater than allowed', async () => {
+  try {
+    await user.addInCart(userToTest, {
+      name:"test",
+      quantity:1001
+    });
+  }
+  catch(error:any) {
+    const quantityGreaterThanAllowed = 'Quantidade deve ser no máximo 1000 produtos';
+    expect(error.message).toBe(quantityGreaterThanAllowed);
+  }
+});
+
 test('Test: Send product name that doesnt exists', async () => {
   try {
     await user.addInCart(userToTest, {
