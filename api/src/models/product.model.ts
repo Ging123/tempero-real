@@ -32,7 +32,7 @@ class ProductModel {
 
   protected readonly productModel = mongoose.models.product || mongoose.model('product', this.productSchema);
 
-  protected createNewUser(product:product) {
+  protected createNewProduct(product:product) {
     return new this.productModel({
       name:product.name,
       stock:product.stock,

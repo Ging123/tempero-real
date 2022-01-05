@@ -8,8 +8,6 @@ const email = 'UserCreateUseCase@outlook.com';
 const username = 'UserCreateUseCase';
 
 beforeAll(async () => {
-  console.log("aaaa")
-  console.log(process.env.DB_URL_TEST!)
   await mongose.connect(process.env.DB_URL_TEST!);
 });
 
