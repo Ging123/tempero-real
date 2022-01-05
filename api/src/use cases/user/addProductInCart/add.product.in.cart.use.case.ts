@@ -1,4 +1,4 @@
-import UserRepository, {product} from "../../../repositories/user.repository";
+import UserRepository, { product } from "../../../repositories/user.repository";
 import exception from "../../../utils/exception";
 import ProductGetUseCase from "../../product/get/product.get.use.case";
 
