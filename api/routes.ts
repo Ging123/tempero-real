@@ -1,5 +1,5 @@
 import express from 'express';
 
-const route = express.Router();
+const routes = express.Router();
 
-module.exports = route;
+export default routes;

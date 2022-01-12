@@ -16,16 +16,27 @@ class OrderRepository extends OrderModel {
     return orderToUpdate;
   }
 
+  public async cancel(order:any, orderIndex:number) {
+    order.order[orderIndex].status = 'Cancelado';
+    await order.save();
+    return order;
+  }
+
   public async find() {
     return await this.orderModel.find({});
   }
 
   public async findByOwner(usernameOfTheOwner:string) {
-    return await this.orderModel.findOne({usernameOfTheOwner:usernameOfTheOwner});
+    return await this.orderModel.findOne({ usernameOfTheOwner:usernameOfTheOwner });
   }
 
   public async deleteAll() {
     return await this.orderModel.deleteMany({});
+  }
+
+  public async removeAllOrdersFromAnUsername(order:any) {
+    order.order = [];
+    await order.save();
   }
 }
 

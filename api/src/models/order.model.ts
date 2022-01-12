@@ -7,7 +7,7 @@ export interface order {
   nameOfTheProduct:string;
   quantity:number;
   address:string;
-  status:orderStatus
+  status:orderStatus;
 }
 
 class OrderModel {

@@ -1,12 +1,13 @@
 require('dotenv').config();
 import connectToMoongo from './src/configs/moongose';
 import bodyParser from 'body-parser';
-import routes from './routes';
 import express from 'express';
+import routes from './routes';
 import cors from 'cors';
 
 const app = express();
 const port = process.env.SERVER_PORT! || 8000;
+
 
 app.use(cors({
   origin:process.env.CLIENT_URL!,
@@ -14,10 +15,6 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 app.use(routes);
-
-app.get('/', (req, res) => {
-  res.send('hello world');
-});
 
 !(async function config() {
   try {
