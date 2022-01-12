@@ -6,6 +6,7 @@ const MainInput = (props) => {
 
   return (
     <TextInput
+      autoComplete={props.autoComplete}
       onChangeText={props.onChangeText}
       placeholder={props.placeholder}
       secureTextEntry={props.secure}

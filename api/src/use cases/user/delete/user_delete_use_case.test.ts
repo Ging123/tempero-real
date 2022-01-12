@@ -1,0 +1,25 @@
+import mongose from 'mongoose';
+import UserRepository from '../../../repositories/user.repository';
+import UserDeleteUseCase from './use_case';
+
+const user = new UserDeleteUseCase();
+const repository = new UserRepository();
+const email = 'UserDeleteUseCase@hotmail.com';
+
+beforeAll(async () => {
+  await mongose.connect(process.env.DB_URL_TEST!);
+});
+
+test('Test: delete an user', async () => {
+  await repository.insert({
+    email:email,
+    username:'UserDeleteUseCase',
+    password:'123456789'
+  });
+  await user.delete(email)
+  .then(() => expect(true).toBe(true));
+});
+
+afterAll(async () => {
+  await mongose.disconnect();
+});

@@ -45,11 +45,6 @@ class UserRepository extends UserModel {
     await user.save();
   }
 
-  public async removeProductOfTheCart(user:any, index:number) {
-    user.cart = user.cart.splice(index, 1);
-    await user.save();
-  }
-
   private updateQuantityOfTheProductInTheCart(user:any, product:product) {
     for(let i = 0; i < user.cart.length; i++) {
       const mustUpdateThisProduct = user.cart[i].product.name === product.name;
@@ -58,6 +53,11 @@ class UserRepository extends UserModel {
         break;
       }
     }
+  }
+
+  public async removeProductOfTheCart(user:any, index:number) {
+    user.cart = user.cart.splice(index, 1);
+    await user.save();
   }
 
   public async confirmAccount(user:any) {

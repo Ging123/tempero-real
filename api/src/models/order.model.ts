@@ -1,9 +1,13 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-interface order {
+export type orderStatus = 'Em andamento'|'Comprado'|'Cancelado';
+
+export interface order {
   nameOfTheProduct:string;
   quantity:number;
+  address:string;
+  status:orderStatus
 }
 
 class OrderModel {
@@ -24,7 +28,7 @@ class OrderModel {
 
   protected readonly orderModel = mongoose.models.order || mongoose.model('order', this.orderSchema);
 
-  protected createNewUser(usernameOfTheOwner:string, order:order[]) {
+  protected createNewOrder(usernameOfTheOwner:string, order:order[]) {
     return new this.orderModel({
       usernameOfTheOwner:usernameOfTheOwner,
       order:order
