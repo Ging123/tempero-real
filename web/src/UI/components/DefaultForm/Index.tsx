@@ -10,7 +10,7 @@ interface props {
 
 const DefaultForm = (props:props) => {
   return (
-    <form className="default-form">
+    <form className="default-form" onSubmit={ props.onSubmit }>
       { props.children }
       { props.error && <Text content={props.error} type="error"/> }
     </form>
