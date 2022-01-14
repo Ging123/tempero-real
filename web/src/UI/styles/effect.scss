@@ -1,0 +1,20 @@
+@import './color.scss';
+
+%darker-on-hover-or-click {
+  
+  &:hover {
+    cursor:pointer;
+    filter:brightness(90%);
+  }
+
+  &:active {
+    filter:brightness(80%);
+  }
+}
+
+%box-shadow-with-main-green-on-focus {
+  
+  &:focus {
+    box-shadow:1px 1px 15px $main-green;
+  }
+}

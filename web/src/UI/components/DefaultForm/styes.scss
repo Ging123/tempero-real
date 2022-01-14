@@ -1,0 +1,12 @@
+@import '../../styles/components.scss';
+
+.default-form {
+  @extend %flex-column;
+  width:450px;
+}
+
+@media (max-width:455px) {
+  .default-form {
+    width:100%;
+  }
+}

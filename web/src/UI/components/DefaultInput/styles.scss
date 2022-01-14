@@ -1,0 +1,26 @@
+@import '../../styles/effect.scss';
+
+.default-input-container {
+  position:relative;
+  width:100%;
+
+  & > .icone { 
+    color:gray;
+    font-size:18px;
+    left:10px;
+    position:absolute;
+    top:49%;
+    transform:translateY(-50%);
+  }
+}
+
+.default-input {
+  @extend %box-shadow-with-main-green-on-focus;
+  border:none;
+  box-shadow:1px 1px 10px gray;
+  border-radius:100px;
+  font-size:18px;
+  padding:10px 35px;
+  outline:none;
+  width:100%;
+}

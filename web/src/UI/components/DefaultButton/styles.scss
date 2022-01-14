@@ -1,0 +1,17 @@
+@import '../../styles/color.scss';
+@import '../../styles/effect.scss';
+
+.default-button {
+  @extend %darker-on-hover-or-click;
+  background:$main-green;
+  border:none;
+  border-radius:100px;
+  box-shadow:1px 1px 10px gray;
+  color:white;
+  font: {
+    size:18px;
+    weight:600;
+  }
+  padding:10px 10px;
+  width:100%;
+}

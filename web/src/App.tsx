@@ -1,11 +1,6 @@
+import Routes from './Routes';
 import './UI/styles/global.scss';
 
-function App() {
-  return (
-    <>
-      hi
-    </>
-  );
-}
+const App = () => <Routes/>
 
 export default App;

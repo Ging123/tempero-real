@@ -1,0 +1,16 @@
+@import '../../styles/components.scss';
+
+.background-image-container {
+  @include flex(column);
+  @include size(100%, 100vh);
+  alt:'Não foi possível carregar essa imagem :(';
+  background-size:100% 100%;
+  background-repeat:no-repeat;
+  position:fixed;
+  
+  & > div:first-child {
+    @include flex(column);
+    position:relative;
+    z-index:100;
+  }
+}
