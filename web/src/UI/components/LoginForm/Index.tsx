@@ -33,7 +33,7 @@ const LoginForm = () => {
       />
       <DefaultInput
         icone={ <FaLock /> }
-        margin="10px 0px 15px 0px"
+        margin="10px 0px 12px 0px"
         maxLength={30}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Senha"

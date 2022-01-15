@@ -6,11 +6,13 @@ import LoginForm from "../../components/LoginForm/Index";
 import SignUpMessage from "../../components/SignUpMessage/Index";
 
 const Login = () => {
+  document.title = 'Entrar';
+
   return (
     <BackgroundImage layerColor={ color.blackForLayer } url={ spice }>
       <Text content="Entrar" type="title"/>
       <Text
-        content="Digite seus dados para entrar na melhor loja de tempero de feira :)"
+        content="Entre e veja os melhores temperos de Feira de Santana"
         type="sub-title"
         margin="15px 0px 35px 0px"
       />
