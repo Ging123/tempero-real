@@ -4,12 +4,14 @@ import './styles.scss';
 interface props<T = any> {
   children:T;
   layerColor?:string;
+  position?:'absolute'|'fixed'|'relative'
   url:string;
 }
 
 const BackgroundImage = (props:props) => {
   const styles = {
-    backgroundImage:`url("${props.url}")`
+    backgroundImage:`url("${props.url}")`,
+    position:props.position || 'relative'
   }
 
   return (

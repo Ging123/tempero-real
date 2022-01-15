@@ -1,4 +1,4 @@
-import spice from '../../assets/spice_to_sign_up.jpg';
+import spice from '../../assets/spice_for_sign_up.jpg';
 import color from '../../color'
 import BackgroundImage from '../../components/BackgroundImage/Index'
 import LoginMessage from '../../components/LoginMessage/Index';
@@ -9,7 +9,7 @@ const SignUp = () => {
   document.title = 'Cadastrar';
 
   return (
-    <BackgroundImage layerColor={ color.blackForLayer } url={ spice }>
+    <BackgroundImage layerColor={ color.blackForLayer } position='fixed' url={ spice }>
       <Text content="Cadastre-se" type="title" />
       <Text
         content="Digite seus dados para se cadastrar"

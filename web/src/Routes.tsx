@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 
 const Login = lazy(() => import('./UI/pages/Login/Index'));
 const SignUp = lazy(() => import('./UI/pages/SignUp/Index'));
+const Product = lazy(() => import('./UI/pages/Product/Index'));
 
 const Routes = () => {
   return (
@@ -10,6 +11,7 @@ const Routes = () => {
       <Endpoints>
         <Route element={<Login/>} path="/"/>
         <Route element={<SignUp/>} path="/signup"/>
+        <Route element={<Product/>} path="/product"/>
       </Endpoints>
     </Suspense>
   );

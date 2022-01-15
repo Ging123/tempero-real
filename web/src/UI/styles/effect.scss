@@ -12,6 +12,14 @@
   }
 }
 
+%main-green-on-hover-or-click {
+  @extend %darker-on-hover-or-click;
+  
+  &:hover {
+    color:$main-green;
+  }
+}
+
 %box-shadow-with-main-green-on-focus {
   
   &:focus {
