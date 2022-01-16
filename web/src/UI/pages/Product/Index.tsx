@@ -1,4 +1,5 @@
 import FirstSpicesInProduct from "../../components/FirstSpicesInProduct/Index";
+import RedSpiceProduct from "../../components/RedSpiceProduct/Index";
 import UserHeader from "../../components/UserHeader/Index";
 import YellowSpiceProduct from "../../components/YellowSpiceProduct/Index";
 
@@ -10,6 +11,7 @@ const Product = () => {
       <UserHeader/>
       <FirstSpicesInProduct/>
       <YellowSpiceProduct/>
+      <RedSpiceProduct/>
     </div>
   );
 }

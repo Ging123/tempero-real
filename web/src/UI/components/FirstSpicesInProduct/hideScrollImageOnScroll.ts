@@ -1,5 +1,6 @@
 function hideScrollImageOnScroll() {
-  const message = document.querySelector<HTMLElement>('.scroll-down-message')!;
+  const message = document.querySelector<HTMLElement>('.scroll-down-message');
+  if(!message) return;
   const howMuchScrollDown = window.scrollY;
   if(howMuchScrollDown > 0) return hideMessage(message);
   showMessage(message);
