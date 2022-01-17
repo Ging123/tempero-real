@@ -1,0 +1,10 @@
+@import '../../styles/components.scss';
+
+.modal {
+  @include size(100%, 100vh);
+  left:0px;
+  position:fixed;
+  top:0px;
+  width:100%;
+  z-index:105;
+}

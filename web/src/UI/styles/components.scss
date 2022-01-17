@@ -21,3 +21,10 @@
   flex-direction:$direction;
   justify-content:$justifyContent;
 }
+
+@mixin position($type:relative, $top:null, $left:null, $bottom:null, $right:null) {
+  position:$type;
+  top:$top;
+  left:$left;
+  right:$right;
+}

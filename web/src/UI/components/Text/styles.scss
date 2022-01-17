@@ -33,6 +33,10 @@
   font-size:16px;
 }
 
+.bold {
+  font-weight:600;
+}
+
 .highlight {
   @extend %darker-on-hover-or-click;
   color:$main-green;

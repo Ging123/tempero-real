@@ -32,7 +32,7 @@ class AddProductInCartUseCase {
     if(product.quantity <= 0) throw exception(quantityOfProductInvalid);
     if(product.quantity > 1000) throw exception(quantityGreaterThanAllowed);
     if(!isNumber(product.quantity)) throw exception(quantityIsNotANumber);
-    if(!isInt(product.quantity)) throw exception(quantityIsNotANumber);
+    if(!isInt(product.quantity)) throw exception(quantityIsNotAnInt);
   }
 
   private async verifyIfProductExits(product:product) {

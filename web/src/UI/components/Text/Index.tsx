@@ -6,6 +6,7 @@ type display = 'block'|'inline'|'inline-block';
 interface props {
   children?:React.ReactNode;
   className?:string;
+  color?:string;
   content?:string;
   display?:display;
   margin?:string;
@@ -14,7 +15,7 @@ interface props {
 }
 
 const Text = (props:props) => {
-  const style = { display:props.display, margin:props.margin };
+  const style = { color:props.color, display:props.display, margin:props.margin };
   const type = props.type || 'text';
   const classes = `${type} ${props.className || ''}`;
 

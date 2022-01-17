@@ -8,6 +8,7 @@ route.get('/', authUser, (req:any, res) => {
     id:req.user._id,
     email:req.user.email,
     username:req.user.username,
+    cart:req.user.cart,
     role:req.user.role
   });
 });

@@ -1,0 +1,43 @@
+@import '../../styles/components.scss';
+@import '../../styles/color.scss';
+
+%gray-border-bottom {
+  border-bottom:1px solid $cart-border-gray;
+}
+
+.cart-and-order-bar {
+  @include size(400px, 100vh);
+  background:white;
+  box-shadow:1px 1px 10px gray;
+  position:fixed;
+  top:0px;
+  transition:left .3s ease;
+  z-index:106;
+
+  &.hidden {
+    left:-50%;
+  }
+
+  &.show {
+    left:0px;
+  }
+}
+
+.cart-title {
+  @extend %gray-border-bottom;
+  font-weight:600;
+  padding:15px;
+}
+
+.product-container {
+  @include flex(row, center, space-between);
+  @extend %gray-border-bottom;
+  padding:15px;
+}
+
+.product-name {
+  font: {
+    size:14px;
+    weight:600;
+  }
+}

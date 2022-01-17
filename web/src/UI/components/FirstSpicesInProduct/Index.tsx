@@ -9,7 +9,8 @@ import hideScrollImageOnScroll from './hideScrollImageOnScroll';
 
 const FirstSpicesInProduct = () => {
   useEffect(() => {
-    window.onscroll = () => hideScrollImageOnScroll();
+    window.addEventListener('scroll', hideScrollImageOnScroll);
+    return () => window.removeEventListener('scroll', hideScrollImageOnScroll);
   }, []);
 
   return (

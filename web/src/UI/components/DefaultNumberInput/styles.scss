@@ -1,0 +1,18 @@
+@import '../../styles/components.scss';
+@import '../../styles/effect.scss';
+
+.default-number-input-container {
+  @include flex(row, center, center);
+  border:1px solid gray;
+  padding:5px 10px;
+  user-select: none;  
+
+  & > div {
+    margin:0px 15px;
+    pointer-events: none;
+  }
+
+  & > .icone {
+    @extend %main-green-on-hover-or-click;
+  }
+}

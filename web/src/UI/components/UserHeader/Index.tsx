@@ -1,11 +1,22 @@
 import { FaDoorOpen, FaShoppingCart } from 'react-icons/fa';
 import './styles.scss';
 
-const UserHeader = () => {
+interface props {
+  onClickCart?:() => void;
+  onClickExit?:() => void;
+}
+
+const UserHeader = (props:props) => {
   return (
     <header className="user-header">
-      <FaShoppingCart title="Carrinho e Pedidos"/>
-      <FaDoorOpen title="Sair"/>
+      <FaShoppingCart 
+        onClick={props.onClickCart}
+        title="Carrinho e Pedidos" 
+      />
+      <FaDoorOpen 
+        onClick={props.onClickExit}
+        title="Sair"
+      />
     </header>
   )
 }
